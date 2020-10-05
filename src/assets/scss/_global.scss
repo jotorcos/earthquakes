@@ -1,0 +1,23 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .label {
+    font-weight: bold;
+  }
+
+  .detail {
+    display: flex;
+    justify-content: center;
+
+    a {
+      display: block;
+      color: $primary;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}
