@@ -13,6 +13,7 @@
     "vue": "^2.6.11",
     "vue-router": "^3.4.5",
     "vue-spinner": "^1.0.4",
+    "vue-toast-notification": "^0.5.4",
     "vue2-leaflet": "^2.5.2",
     "vuejs-datepicker": "^1.6.2"
   },

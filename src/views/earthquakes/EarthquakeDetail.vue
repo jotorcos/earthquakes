@@ -5,27 +5,53 @@
     </div>
     <div v-else class="my-container">
       <ul>
-        <li><span class="label">Id: </span>{{ earthquakeProperties.id }}</li>
-        <li>
-          <span class="label">Location: </span>{{ earthquakeProperties.place }}
-        </li>
-        <li>
+        <li v-if="earthquakeProperties.title">
           <span class="label">Title: </span>{{ earthquakeProperties.title }}
         </li>
-        <li>
+        <li><span class="label">Id: </span>{{ earthquakeProperties.id }}</li>
+        <li v-if="earthquakeProperties.code">
+          <span class="label">Code: </span>{{ earthquakeProperties.code }}
+        </li>
+        <li v-if="earthquakeProperties.place">
+          <span class="label">Location: </span>{{ earthquakeProperties.place }}
+        </li>
+        <li v-if="earthquakeProperties.date">
           <span class="label">Date: </span>{{ earthquakeProperties.date }}
         </li>
-        <li>
+        <li v-if="earthquakeProperties.date">
           <span class="label">Type: </span>{{ earthquakeProperties.type }}
         </li>
-        <li>
+        <li v-if="earthquakeProperties.date">
+          <span class="label"
+            >Horizontal distance from epicenter to the nearest station: </span
+          >{{ earthquakeProperties.dmin }} degrees
+        </li>
+        <li v-if="earthquakeProperties.date">
+          <span class="label">The total number of felt reports submitted: </span
+          >{{ earthquakeProperties.felt }}
+        </li>
+        <li v-if="earthquakeProperties.gap">
+          <span class="label"
+            >The largest azimuthal gap between azimuthally adjacent stations: </span
+          >{{ earthquakeProperties.gap }} degrees
+        </li>
+        <li v-if="earthquakeProperties.cdi">
+          <span class="label">Intensity: </span>{{ earthquakeProperties.cdi }}
+        </li>
+        <li v-if="earthquakeProperties.mag">
           <span class="label">Magnitud: </span>{{ earthquakeProperties.mag }}
+        </li>
+        <li v-if="earthquakeProperties.magType">
+          <span class="label">Magnitud Type: </span>
           {{ earthquakeProperties.magType }}
         </li>
-        <li>
+        <li v-if="earthquakeProperties.depth">
+          <span class="label">Depth: </span>{{ earthquakeProperties.depth }}
+        </li>
+        <li v-if="earthquakeProperties.status">
           <span class="label">Status: </span>{{ earthquakeProperties.status }}
         </li>
-        <li>
+        <li v-if="earthquakeProperties.url">
           <span class="label">Url: </span
           ><a :href="earthquakeProperties.url" target="_blank">{{
             earthquakeProperties.url

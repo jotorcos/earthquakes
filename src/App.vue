@@ -12,7 +12,7 @@ import TheFooter from '@/components/layout/TheFooter'
 
 export default {
   name: 'App',
-  components: { TheHeader, TheFooter },
+  components: { TheHeader, TheFooter }
 }
 </script>
 
@@ -30,7 +30,7 @@ export default {
 
 .container {
   height: calc(100vh - 112px);
-  width: 100vw;
+  width: 100%;
   top: 54px;
   left: 0px;
   position: absolute;

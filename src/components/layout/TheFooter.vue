@@ -1,7 +1,7 @@
 <template>
   <footer>
     <span
-      >💻 with ❤️ &amp; <a href="//vuejs.org" target="_blank">Vue.js</a> in
+      >💻 with 💜&amp; <a href="//vuejs.org" target="_blank">Vue.js</a> in
       Valencia</span
     >
   </footer>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'TheFooter',
+  name: 'TheFooter'
 }
 </script>
 
@@ -25,7 +25,7 @@ footer {
 
   a {
     text-decoration: none;
-    color: #546e7a;
+    color: $purple;
   }
 }
 </style>
