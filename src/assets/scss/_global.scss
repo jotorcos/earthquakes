@@ -21,3 +21,9 @@
     }
   }
 }
+
+.leaflet-control-container .leaflet-top.leaflet-left {
+  position: absolute;
+  top: auto;
+  bottom: 10px;
+}

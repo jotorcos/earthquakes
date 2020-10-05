@@ -13,9 +13,6 @@
           <span class="label">Title: </span>{{ earthquakeProperties.title }}
         </li>
         <li>
-          <span class="label">Time: </span>{{ earthquakeProperties.time }}
-        </li>
-        <li>
           <span class="label">Date: </span>{{ earthquakeProperties.date }}
         </li>
         <li>
