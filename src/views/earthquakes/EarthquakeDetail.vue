@@ -64,6 +64,7 @@
 
 <script>
 import Loader from '@/components/ui/Loader'
+import API from '@/api'
 
 export default {
   name: 'EarthquakeDetail',
@@ -78,14 +79,11 @@ export default {
   },
   async created() {
     this.loading = true
-    const response = await fetch(
-      `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventid=${this.$route.params.id}`
-    )
-    const data = await response.json()
+    const earthquakeData = await API.fetchEarthquakeById(this.$route.params.id)
     this.earthquakeProperties = {
-      ...data.properties,
-      id: data.id,
-      date: new Date(data.properties.time)
+      ...earthquakeData.properties,
+      id: earthquakeData.id,
+      date: new Date(earthquakeData.properties.time)
     }
 
     this.loading = false
