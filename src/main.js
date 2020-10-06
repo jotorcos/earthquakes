@@ -15,6 +15,7 @@ Vue.use(VueToast, {
   className: 'custom-toast'
 })
 
+// Navigate with router within popup
 window.Vue = Vue
 Vue.router = router
 

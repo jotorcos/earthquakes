@@ -35,9 +35,10 @@ export default {
     return {
       zoom: 3,
       center: [39.466667, -0.375],
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      url:
+        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
       attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
       marker: L.latLng(39.466667, -0.375),
       iconSize: 26,
       popupAnchor: [0, -38]
