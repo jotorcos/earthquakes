@@ -14,11 +14,10 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import Loader from '@/components/ui/Loader'
 import Search from '@/components/search/Search'
 import Map from '@/components/map/Map'
-import API from '@/api'
 
 export default {
   name: 'Earthquakes',
@@ -38,10 +37,10 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setEarthquakes: 'SET_EARTHQUAKES',
       setDateStart: 'SET_DATE_START',
       setDateEnd: 'SET_DATE_END'
     }),
+    ...mapActions(['fetchEarthquakesByDate']),
     onSearch(filters) {
       this.setDateStart(filters.dateStart)
       this.setDateEnd(filters.dateEnd)
@@ -50,11 +49,7 @@ export default {
     async fetchData(dateStart, dateEnd) {
       this.loading = true
       try {
-        const earthquakesData = await API.fetchEarthquakesByDate(
-          dateStart,
-          dateEnd
-        )
-        this.setEarthquakes(earthquakesData)
+        await this.fetchEarthquakesByDate({ dateStart, dateEnd })
         this.loading = false
       } catch {
         this.$toast.error('Please, try again with a smaller date range.')

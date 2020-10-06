@@ -79,7 +79,7 @@ export default {
   },
   async created() {
     this.loading = true
-    const earthquakeData = await API.fetchEarthquakeById(this.$route.params.id)
+    const earthquakeData = await API.getEarthquakeById(this.$route.params.id)
     this.earthquakeProperties = {
       ...earthquakeData.properties,
       id: earthquakeData.id,
