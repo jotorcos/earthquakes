@@ -1,6 +1,15 @@
 .vdp-datepicker {
   z-index: 500;
 
+  &__calendar {
+    @media (max-width: 600px) {
+      position: fixed !important;
+      width: 90% !important;
+      left: 5%;
+      right: 5%;
+    }
+  }
+
   input {
     height: 45px;
     max-width: 120px;
