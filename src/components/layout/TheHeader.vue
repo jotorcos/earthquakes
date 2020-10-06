@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a class="title" href="/earthquakes">Vue Earthquakes Map</a>
+    <a class="title" href="/">Vue Earthquakes Map</a>
   </header>
 </template>
 
