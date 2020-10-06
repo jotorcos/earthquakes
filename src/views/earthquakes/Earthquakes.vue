@@ -9,7 +9,7 @@
       :search-disabled="loading"
       @search="onSearch"
     ></Search>
-    <Map :geojson="earthquakes" />
+    <Map v-if="!loading" :geojson="earthquakes" />
   </div>
 </template>
 
