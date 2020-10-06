@@ -3,12 +3,18 @@
     <div v-if="loading" class="loader">
       <Loader :loading="loading"></Loader>
     </div>
-    <Search :search-disabled="loading" @search="onSearch"></Search>
-    <Map :geojson="geojson" />
+    <Search
+      :date-start-ini="dateStart"
+      :date-end-ini="dateEnd"
+      :search-disabled="loading"
+      @search="onSearch"
+    ></Search>
+    <Map :geojson="earthquakes" />
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
 import Loader from '@/components/ui/Loader'
 import Search from '@/components/search/Search'
 import Map from '@/components/map/Map'
@@ -26,9 +32,19 @@ export default {
       geojson: null
     }
   },
+  computed: {
+    ...mapState(['earthquakes', 'dateStart', 'dateEnd'])
+  },
   methods: {
+    ...mapMutations({
+      setEarthquakes: 'SET_EARTHQUAKES',
+      setDateStart: 'SET_DATE_START',
+      setDateEnd: 'SET_DATE_END'
+    }),
     onSearch(filters) {
-      this.fetchData(filters.dateStart, filters.dateEnd)
+      this.setDateStart(filters.dateStart)
+      this.setDateEnd(filters.dateEnd)
+      this.fetchData(this.dateStart, this.dateEnd)
     },
     async fetchData(dateStart, dateEnd) {
       this.loading = true
@@ -37,7 +53,7 @@ export default {
           `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${dateStart.toISOString()}&endtime=${dateEnd.toISOString()}`
         )
         const data = await response.json()
-        this.geojson = data
+        this.setEarthquakes(data)
         this.loading = false
       } catch {
         this.$toast.error('Please, try again with a smaller date range.')

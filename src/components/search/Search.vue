@@ -29,6 +29,12 @@ export default {
     Datepicker
   },
   props: {
+    dateStartIni: {
+      type: [Date, null]
+    },
+    dateEndIni: {
+      type: [Date, null]
+    },
     searchDisabled: {
       type: Boolean,
       required: true
@@ -44,6 +50,10 @@ export default {
         }
       }
     }
+  },
+  created() {
+    this.dateStart = this.dateStartIni
+    this.dateEnd = this.dateEndIni
   },
   methods: {
     search() {

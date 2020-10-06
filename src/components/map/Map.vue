@@ -43,22 +43,6 @@ export default {
       popupAnchor: [0, -38]
     }
   },
-  mounted() {
-    // this.$nextTick(() => {
-    //   const map = this.$refs.map.mapObject // work as expected
-    //   var legend = L.control({ position: 'bottomright' })
-    //   legend.onAdd = () => {
-    //     const div = L.DomUtil.create('div', 'info legend')
-    //     const grades = [0, 10, 20, 50, 100, 200, 500, 1000]
-    //     // loop through our density intervals and generate a label with a colored square for each interval
-    //     for (var i = 0; i < grades.length; i++) {
-    //       div.innerHTML += `<div><i style="background: red"></i></div>`
-    //     }
-    //     return div
-    //   }
-    //   legend.addTo(map)
-    // })
-  },
   computed: {
     options() {
       return {
@@ -92,7 +76,7 @@ export default {
             ${feature.id}
             </div><div><span class="label">Location: </span>
             ${feature.properties.place}
-            </div><div class="detail"><a href="/earthquakes/${feature.id}">See detail</a></div></div>`,
+            </div><div class="detail"><a href="/earthquakes/${feature.id}" onclick="event.preventDefault(); Vue.router.push('/earthquakes/${feature.id}')">See detail</a></div></div>`,
           { permanent: false, sticky: false }
         )
       }
