@@ -100,6 +100,7 @@ export default {
   align-items: center;
   text-align: left;
   margin: 15px 15px;
+  padding-bottom: 50px;
 
   li {
     line-height: 30px;

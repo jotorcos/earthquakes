@@ -18,7 +18,7 @@ header {
   left: 0;
   width: 100vw;
   margin: 0;
-  position: absolute;
+  position: fixed;
   padding: 1rem;
 
   .title {

@@ -20,7 +20,7 @@ footer {
   bottom: 0;
   left: 0;
   padding: 1rem;
-  position: absolute;
+  position: fixed;
   width: 100vw;
 
   a {
