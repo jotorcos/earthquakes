@@ -8,19 +8,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/earthquakes',
-    },
-    {
-      path: '/earthquakes',
       name: 'Earthquakes',
-      component: () => import('@/views/earthquakes/Earthquakes'),
+      component: () => import('@/views/earthquakes/Earthquakes')
     },
     {
       path: '/earthquakes/:id',
       name: 'EarthquakeDetail',
       props: true,
       required: true,
-      component: () => import('@/views/earthquakes/EarthquakeDetail'),
-    },
-  ],
+      component: () => import('@/views/earthquakes/EarthquakeDetail')
+    }
+  ]
 })
