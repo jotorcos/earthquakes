@@ -4,7 +4,7 @@
       <Loader :loading="loading"></Loader>
     </div>
     <Search :search-disabled="loading" @search="onSearch"></Search>
-    <Map ref="map" :geojson="geojson" />
+    <Map :geojson="geojson" />
   </div>
 </template>
 

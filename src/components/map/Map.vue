@@ -1,5 +1,11 @@
 <template>
-  <l-map :zoom="zoom" :center="center" class="map">
+  <l-map
+    ref="map"
+    :zoom="zoom"
+    :center="center"
+    class="map"
+    @ready="onMapReady()"
+  >
     <l-tile-layer :url="url" :attribution="attribution" />
     <l-geo-json
       :geojson="geojson"
@@ -37,20 +43,27 @@ export default {
       popupAnchor: [0, -38]
     }
   },
+  mounted() {
+    // this.$nextTick(() => {
+    //   const map = this.$refs.map.mapObject // work as expected
+    //   var legend = L.control({ position: 'bottomright' })
+    //   legend.onAdd = () => {
+    //     const div = L.DomUtil.create('div', 'info legend')
+    //     const grades = [0, 10, 20, 50, 100, 200, 500, 1000]
+    //     // loop through our density intervals and generate a label with a colored square for each interval
+    //     for (var i = 0; i < grades.length; i++) {
+    //       div.innerHTML += `<div><i style="background: red"></i></div>`
+    //     }
+    //     return div
+    //   }
+    //   legend.addTo(map)
+    // })
+  },
   computed: {
     options() {
       return {
         onEachFeature: this.onEachFeatureFunction,
-        pointToLayer: (feature, latlng) => {
-          return L.marker(latlng, {
-            icon: L.icon({
-              iconUrl: '/earthquake.ico',
-              iconSize: this.customIconSize,
-              iconAnchor: this.customIconAnchor,
-              popupAnchor: this.popupAnchor
-            })
-          })
-        }
+        pointToLayer: this.pointToLayerFunction
       }
     },
     customIconSize() {
@@ -58,6 +71,9 @@ export default {
     },
     customIconAnchor() {
       return [this.iconSize / 2, this.iconSize * 1.3]
+    },
+    customIconSizeAutomatic() {
+      return [this.iconSize * 1.4, this.iconSize * 1.1]
     },
     styleFunction() {
       return () => {
@@ -80,6 +96,63 @@ export default {
           { permanent: false, sticky: false }
         )
       }
+    },
+    pointToLayerFunction() {
+      return (feature, latlng) => {
+        if (feature.properties.status === 'reviewed') {
+          return L.marker(latlng, {
+            icon: L.icon({
+              iconUrl: '/earthquake.ico',
+              iconSize: this.customIconSize,
+              iconAnchor: this.customIconAnchor,
+              popupAnchor: this.popupAnchor
+            })
+          })
+        } else if (feature.properties.status === 'automatic') {
+          return L.marker(latlng, {
+            icon: L.icon({
+              iconUrl: '/earthquake-automatic.ico',
+              iconSize: this.customIconSizeAutomatic,
+              iconAnchor: this.customIconAnchor,
+              popupAnchor: this.popupAnchor
+            })
+          })
+        } else {
+          return L.marker(latlng, {
+            icon: L.icon({
+              iconUrl: '/question-mark.ico',
+              iconSize: this.customIconSize,
+              iconAnchor: this.customIconAnchor,
+              popupAnchor: this.popupAnchor
+            })
+          })
+        }
+      }
+    }
+  },
+  methods: {
+    onMapReady() {
+      const map = this.$refs.map.mapObject
+      const legend = L.control({ position: 'bottomright' })
+
+      legend.onAdd = () => {
+        const div = L.DomUtil.create('div', 'info legend')
+        div.innerHTML = `
+        <div class="legend">
+            <div class="item">
+                <img class="image-renewed" src="/earthquake.ico">
+                Reviewed
+            </div>
+            <div class="item">
+                <img class="image-automatic" src="/earthquake-automatic.ico">
+                Automatic
+            </div>
+        </div>`
+
+        return div
+      }
+
+      legend.addTo(map)
     }
   }
 }
